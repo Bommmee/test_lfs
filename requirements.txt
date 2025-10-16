@@ -21,3 +21,5 @@ cloudpickle
 xgboost
 
 lightgbm
+
+catboost
