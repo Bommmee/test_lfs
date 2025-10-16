@@ -25,16 +25,16 @@ load_dotenv()
 # 1. 환경 분기: 현재 앱이 어디서 실행되는지 확인
 if st.runtime.exists():
     # 2. Streamlit Cloud 환경: st.secrets에서 키 로드
-    api_key = st.secrets.get(API_KEY_NAME)
+    api_key = st.secrets.get(OPENAI_API_KEY)
 else:
     # 3. 로컬 환경: .env 파일에서 키 로드
     try:
         load_dotenv() # .env 파일 내용을 환경 변수에 로드
-        api_key = os.environ.get(API_KEY_NAME)
+        api_key = os.environ.get(OPENAI_API_KEY)
     except Exception:
         # load_dotenv가 실패하더라도 기본적으로는 os.environ에 접근을 시도합니다.
         # 이 예제에서는 명시적인 에러 대신, 키가 없는 경우 최종 에러 메시지를 사용합니다.
-        api_key = os.environ.get(API_KEY_NAME)
+        api_key = os.environ.get(OPENAI_API_KEY)
 
 
 # 4. API 키 유효성 검사 및 설정
@@ -46,9 +46,9 @@ else:
     # 키를 찾지 못했을 때 최종 에러 메시지 출력 및 중단
     error_msg = f"OpenAI API 키를 찾을 수 없습니다. "
     if st.runtime.exists():
-        error_msg += f"Streamlit Cloud **Secrets**에 '{API_KEY_NAME}'을 등록했는지 확인하세요."
+        error_msg += f"Streamlit Cloud **Secrets**에 '{OPENAI_API_KEY}'을 등록했는지 확인하세요."
     else:
-        error_msg += f"**로컬 .env 파일**에 '{API_KEY_NAME}'을 올바르게 설정했는지 확인하세요."
+        error_msg += f"**로컬 .env 파일**에 '{OPENAI_API_KEY}'을 올바르게 설정했는지 확인하세요."
         
     st.error(error_msg)
     # 키가 없으면 더 이상 앱 로직이 진행되지 않도록 합니다.
@@ -1621,5 +1621,6 @@ elif page == "자동 보고서 생성":
 # 푸터
 st.markdown("---")
 st.markdown('<p style="text-align:center;color:#999;font-size:0.9rem;">FMCW 품질관리 대시보드 | Powered by AI</p>', unsafe_allow_html=True)
+
 
 
