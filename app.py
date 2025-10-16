@@ -45,7 +45,7 @@ else:
 if api_key:
     # 키가 존재하면 OpenAI 라이브러리에 설정합니다.
     openai.api_key = api_key
-    st.success("OpenAI API 키가 성공적으로 설정되었습니다.")
+    #st.success("OpenAI API 키가 성공적으로 설정되었습니다.")
 else:
     # 키를 찾지 못했을 때 최종 에러 메시지 출력 및 중단
     error_msg = f"OpenAI API 키를 찾을 수 없습니다. "
@@ -1624,6 +1624,7 @@ elif page == "자동 보고서 생성":
 # 푸터
 st.markdown("---")
 st.markdown('<p style="text-align:center;color:#999;font-size:0.9rem;">FMCW 품질관리 대시보드 | Powered by AI</p>', unsafe_allow_html=True)
+
 
 
 
